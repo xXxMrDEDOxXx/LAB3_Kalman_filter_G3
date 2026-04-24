@@ -1,0 +1,136 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   16 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "doneDoubleBufferReInit"\
+      Description  "DoubleBufferInitCheck"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "x_hat"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:315-320"\
+      Dimensions   [2]\
+    }\
+    ChartData {\
+      Name         "x_hat_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:315-320"\
+    }\
+    ChartData {\
+      Name         "P"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:321-322"\
+      Dimensions   [2,2]\
+    }\
+    ChartData {\
+      Name         "P_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:321-322"\
+    }\
+    ChartData {\
+      Name         "Q"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:323-324"\
+      Dimensions   [2,2]\
+    }\
+    ChartData {\
+      Name         "Q_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:323-324"\
+    }\
+    ChartData {\
+      Name         "R"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:325-326"\
+    }\
+    ChartData {\
+      Name         "R_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:325-326"\
+    }\
+    ChartData {\
+      Name         "A"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:327-328"\
+      Dimensions   [2,2]\
+    }\
+    ChartData {\
+      Name         "A_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:327-328"\
+    }\
+    ChartData {\
+      Name         "B"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:329-330"\
+      Dimensions   [2]\
+    }\
+    ChartData {\
+      Name         "B_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:329-330"\
+    }\
+    ChartData {\
+      Name         "C"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:331-332"\
+      Dimensions   [1,2]\
+    }\
+    ChartData {\
+      Name         "C_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:20:331-332"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

@@ -1,0 +1,10 @@
+config load "C:\Users\POND\OneDrive\Documents\AllProject\Control\lab3\kalman_filter (simulink)\kalman_filter.ioc"
+project toolchain STM32CubeIDE
+
+SetStructure Advanced
+
+project setCustomFWPath "C:\Users\POND\STM32Cube\Repository\STM32Cube_FW_G4_V1.6.0"
+
+project generate 
+
+exit wait
