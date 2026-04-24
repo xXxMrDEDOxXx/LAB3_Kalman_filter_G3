@@ -7,9 +7,9 @@
  *
  * Code generation for model "kalman".
  *
- * Model version              : 2.2
+ * Model version              : 2.5
  * Simulink Coder version : 26.1 (R2026a) 20-Nov-2025
- * C source code generated on : Fri Apr 24 19:30:29 2026
+ * C source code generated on : Fri Apr 24 20:58:57 2026
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex-M

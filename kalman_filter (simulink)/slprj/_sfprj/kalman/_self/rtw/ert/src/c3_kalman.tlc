@@ -1,0 +1,74 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   8 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "sfEvent"\
+      Description  "ActiveChartEvent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "doneDoubleBufferReInit"\
+      Description  "DoubleBufferInitCheck"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "offset"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:67-73"\
+    }\
+    ChartData {\
+      Name         "offset_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:67-73"\
+    }\
+    ChartData {\
+      Name         "count"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:74-79"\
+    }\
+    ChartData {\
+      Name         "count_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:74-79"\
+    }\
+    ChartData {\
+      Name         "sum_val"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:80-87"\
+    }\
+    ChartData {\
+      Name         "sum_val_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "kalman:31:80-87"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

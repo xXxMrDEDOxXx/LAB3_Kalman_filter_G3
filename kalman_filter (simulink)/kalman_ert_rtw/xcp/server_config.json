@@ -1,1 +1,1 @@
-{"entries":[{"content":{"MaxCTOBytes":255,"MaxDTOBytes":65532,"MaxODTEntrySize":255},"type":"coder.xcp.ServerConfig","uuid":"54b58929-72c6-4b6e-81ad-acc8051c4077"}],"packageUris":["http://schema.mathworks.com/mf0/coder_xcp/R2020b"],"version":"1.0"}
+{"entries":[{"content":{"MaxCTOBytes":255,"MaxDTOBytes":65532,"MaxODTEntrySize":255},"type":"coder.xcp.ServerConfig","uuid":"5436731a-08ab-469e-8dfe-32cf7cef705e"}],"packageUris":["http://schema.mathworks.com/mf0/coder_xcp/R2020b"],"version":"1.0"}

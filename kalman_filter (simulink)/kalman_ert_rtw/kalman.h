@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'kalman'.
  *
- * Model version                  : 2.2
+ * Model version                  : 2.5
  * Simulink Coder version         : 26.1 (R2026a) 20-Nov-2025
- * C/C++ source code generated on : Fri Apr 24 19:30:29 2026
+ * C/C++ source code generated on : Fri Apr 24 20:58:57 2026
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex-M
@@ -80,6 +80,9 @@ typedef struct {
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
   stm32cube_blocks_TimerCapture_T obj; /* '<Root>/Timer Capture' */
+  real_T offset;                       /* '<Root>/auto_tare' */
+  real_T count;                        /* '<Root>/auto_tare' */
+  real_T sum_val;                      /* '<Root>/auto_tare' */
   real_T x_hat[2];                     /* '<Root>/Kalman Filter 2 state' */
   real_T P[4];                         /* '<Root>/Kalman Filter 2 state' */
   real_T Q[4];                         /* '<Root>/Kalman Filter 2 state' */
@@ -87,7 +90,8 @@ typedef struct {
   real_T A[4];                         /* '<Root>/Kalman Filter 2 state' */
   real_T B[2];                         /* '<Root>/Kalman Filter 2 state' */
   real_T C[2];                         /* '<Root>/Kalman Filter 2 state' */
-  boolean_T doneDoubleBufferReInit;    /* '<Root>/Kalman Filter 2 state' */
+  boolean_T doneDoubleBufferReInit;    /* '<Root>/auto_tare' */
+  boolean_T doneDoubleBufferReInit_c;  /* '<Root>/Kalman Filter 2 state' */
 } DW_kalman_T;
 
 /* Real-time Model Data Structure */
@@ -158,6 +162,7 @@ extern volatile boolean_T runModel;
  *
  * '<Root>' : 'kalman'
  * '<S1>'   : 'kalman/Kalman Filter 2 state'
+ * '<S2>'   : 'kalman/auto_tare'
  */
 #endif                                 /* kalman_h_ */
 

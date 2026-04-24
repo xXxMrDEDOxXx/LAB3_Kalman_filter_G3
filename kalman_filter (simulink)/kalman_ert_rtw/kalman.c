@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'kalman'.
  *
- * Model version                  : 2.2
+ * Model version                  : 2.5
  * Simulink Coder version         : 26.1 (R2026a) 20-Nov-2025
- * C/C++ source code generated on : Fri Apr 24 19:30:29 2026
+ * C/C++ source code generated on : Fri Apr 24 20:58:57 2026
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex-M
@@ -70,31 +70,37 @@ void kalman_step(void)
   real_T A_0;
   real_T K_idx_0;
   real_T S;
-  real_T tmp_1;
+  real_T displacement;
   real_T x_hat;
   real_T x_hat_0;
   int32_T i;
   int32_T tmp_0;
-  real32_T rtb_Gain;
-  real32_T rtb_Gain1;
   uint32_T channelCounts;
   uint32_T length;
 
   /* CCaller: '<Root>/raw' */
   kalman_B.raw = read_ultrasonic_c();
 
-  /* Gain: '<Root>/Gain' */
-  rtb_Gain = 0.01F * kalman_B.raw;
+  /* MATLAB Function: '<Root>/auto_tare' incorporates:
+   *  Gain: '<Root>/Gain'
+   */
+  if (kalman_DW.count < 100.0) {
+    kalman_DW.sum_val += 0.01F * kalman_B.raw;
+    kalman_DW.count++;
+    kalman_DW.offset = kalman_DW.sum_val / kalman_DW.count;
+    displacement = 0.0;
+  } else {
+    displacement = 0.01F * kalman_B.raw - kalman_DW.offset;
+  }
 
-  /* Gain: '<Root>/Gain1' */
-  rtb_Gain1 = 0.0F * rtb_Gain;
-
-  /* MATLAB Function: '<Root>/Kalman Filter 2 state' */
+  /* MATLAB Function: '<Root>/Kalman Filter 2 state' incorporates:
+   *  Constant: '<Root>/Constant'
+   */
   x_hat = kalman_DW.x_hat[1];
   x_hat_0 = kalman_DW.x_hat[0];
   for (i = 0; i < 2; i++) {
     x_pred[i] = (kalman_DW.A[i + 2] * x_hat + kalman_DW.A[i] * x_hat_0) +
-      kalman_DW.B[i] * rtb_Gain1;
+      kalman_DW.B[i] * 0.0;
     tmp_0 = i << 1;
     K_idx_0 = kalman_DW.P[tmp_0];
     S = kalman_DW.P[tmp_0 + 1];
@@ -118,30 +124,32 @@ void kalman_step(void)
        kalman_DW.C[1]) + kalman_DW.R;
   K_idx_0 = (P_pred[0] * kalman_DW.C[0] + kalman_DW.C[1] * P_pred[2]) / S;
   S = (kalman_DW.C[0] * P_pred[1] + kalman_DW.C[1] * P_pred[3]) / S;
-  x_hat = rtb_Gain - (kalman_DW.C[0] * x_pred[0] + kalman_DW.C[1] * x_pred[1]);
-  kalman_DW.x_hat[0] = K_idx_0 * x_hat + x_pred[0];
-  kalman_DW.x_hat[1] = S * x_hat + x_pred[1];
-  x_hat = 1.0 - K_idx_0 * kalman_DW.C[0];
+  displacement -= kalman_DW.C[0] * x_pred[0] + kalman_DW.C[1] * x_pred[1];
+  kalman_DW.x_hat[0] = K_idx_0 * displacement + x_pred[0];
+  kalman_DW.x_hat[1] = S * displacement + x_pred[1];
+  displacement = 1.0 - K_idx_0 * kalman_DW.C[0];
   kalman_DW.P[0] = 0.0;
-  x_hat_0 = 0.0 - S * kalman_DW.C[0];
+  x_hat = 0.0 - S * kalman_DW.C[0];
   kalman_DW.P[1] = 0.0;
-  A = 0.0 - K_idx_0 * kalman_DW.C[1];
+  x_hat_0 = 0.0 - K_idx_0 * kalman_DW.C[1];
   kalman_DW.P[2] = 0.0;
   K_idx_0 = S * kalman_DW.C[1];
   kalman_DW.P[3] = 0.0;
   for (i = 0; i < 2; i++) {
     tmp_0 = i << 1;
     S = P_pred[tmp_0];
-    A_0 = kalman_DW.P[tmp_0 + 1] + x_hat_0 * S;
-    tmp_1 = P_pred[tmp_0 + 1];
-    kalman_DW.P[tmp_0] = (x_hat * S + kalman_DW.P[tmp_0]) + A * tmp_1;
-    kalman_DW.P[tmp_0 + 1] = (1.0 - K_idx_0) * tmp_1 + A_0;
+    A = kalman_DW.P[tmp_0 + 1] + x_hat * S;
+    A_0 = P_pred[tmp_0 + 1];
+    kalman_DW.P[tmp_0] = (displacement * S + kalman_DW.P[tmp_0]) + x_hat_0 * A_0;
+    kalman_DW.P[tmp_0 + 1] = (1.0 - K_idx_0) * A_0 + A;
   }
 
   /* Gain: '<Root>/Gain2' incorporates:
    *  MATLAB Function: '<Root>/Kalman Filter 2 state'
+   *  MATLAB Function: '<Root>/auto_tare'
+   *  Sum: '<Root>/Add'
    */
-  kalman_B.pos_hatcm = 100.0 * kalman_DW.x_hat[0];
+  kalman_B.pos_hatcm = (kalman_DW.x_hat[0] + kalman_DW.offset) * 100.0;
 
   /* Gain: '<Root>/Gain3' incorporates:
    *  MATLAB Function: '<Root>/Kalman Filter 2 state'
@@ -168,20 +176,21 @@ void kalman_initialize(void)
   rtmSetTFinal(kalman_M, -1);
 
   /* External mode info */
-  kalman_M->Sizes.checksums[0] = (657770023U);
-  kalman_M->Sizes.checksums[1] = (263848387U);
-  kalman_M->Sizes.checksums[2] = (726011166U);
-  kalman_M->Sizes.checksums[3] = (3872562349U);
+  kalman_M->Sizes.checksums[0] = (1972225827U);
+  kalman_M->Sizes.checksums[1] = (3478446513U);
+  kalman_M->Sizes.checksums[2] = (514453738U);
+  kalman_M->Sizes.checksums[3] = (1456462237U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[3];
+    static const sysRanDType *systemRan[4];
     kalman_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
     systemRan[1] = &rtAlwaysEnabled;
     systemRan[2] = &rtAlwaysEnabled;
+    systemRan[3] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(kalman_M->extModeInfo,
       &kalman_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(kalman_M->extModeInfo, kalman_M->Sizes.checksums);
