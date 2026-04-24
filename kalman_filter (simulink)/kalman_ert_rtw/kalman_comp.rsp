@@ -1,0 +1,31 @@
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)"
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/kalman_ert_rtw"
+-ID:/MATLAB/R2026a/extern/include
+-ID:/MATLAB/R2026a/simulink/include
+-ID:/MATLAB/R2026a/rtw/c/src
+-ID:/MATLAB/R2026a/rtw/c/src/ext_mode/common
+-ID:/MATLAB/R2026a/rtw/c/ert
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/ext_mode/include
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/ext_mode/src
+-ID:/MATLAB/R2026a/toolbox/coder/rtiostream/src
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/include
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/common
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/protocol/src
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/protocol/include
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/transport/include
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/transport/src
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/platform/include
+-ID:/MATLAB/R2026a/toolbox/coder/xcp/src/target/server/platform/default
+-ID:/MATLAB/R2026a/toolbox/target/shared/armcortexmbase/scheduler/include
+-ID:/MATLAB/R2026a/rtw/c/src/ext_mode/serial
+-ID:/MATLAB/R2026a/toolbox/stm32b/stm32shared/include
+-ID:/MATLAB/R2026a/toolbox/target/shared/svd/common/include
+-IC:/ProgramData/MATLAB/R2026a/cmsis/3P.instrset/cmsis.instrset/common/CMSIS/Core/Include
+-IC:/ProgramData/MATLAB/R2026a/cmsis/3P.instrset/cmsis_dsp.instrset/common/Include
+-IC:/ProgramData/MATLAB/R2026a/cmsis/3P.instrset/cmsis_dsp.instrset/common/Include/dsp
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/Drivers/STM32G4xx_HAL_Driver/Inc"
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/Drivers/STM32G4xx_HAL_Driver/Inc/Legacy"
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/Drivers/CMSIS/Device/ST/STM32G4xx/Include"
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/Drivers/CMSIS/Include"
+-I"C:/Users/POND/OneDrive/Documents/AllProject/Control/lab3/kalman_filter (simulink)/Core/Inc"
+-I../Core/Inc
